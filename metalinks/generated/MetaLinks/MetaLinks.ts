@@ -79,32 +79,36 @@ export class MetaLinkAdded__Params {
     this._event = event;
   }
 
-  get id(): BigInt {
+  get avatarID(): BigInt {
     return this._event.parameters[0].value.toBigInt();
   }
 
-  get name(): Bytes {
-    return this._event.parameters[1].value.toBytes();
+  get newMetaLinkID(): BigInt {
+    return this._event.parameters[1].value.toBigInt();
   }
 
-  get aka(): Bytes {
+  get name(): Bytes {
     return this._event.parameters[2].value.toBytes();
   }
 
-  get universe(): string {
+  get aka(): string {
     return this._event.parameters[3].value.toString();
   }
 
-  get link(): string {
+  get universe(): string {
     return this._event.parameters[4].value.toString();
   }
 
-  get avatar(): string {
+  get link(): string {
     return this._event.parameters[5].value.toString();
   }
 
+  get avatar(): string {
+    return this._event.parameters[6].value.toString();
+  }
+
   get active(): boolean {
-    return this._event.parameters[6].value.toBoolean();
+    return this._event.parameters[7].value.toBoolean();
   }
 }
 
