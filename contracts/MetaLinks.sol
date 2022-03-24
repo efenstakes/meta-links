@@ -134,7 +134,23 @@ contract MetaLinks is Ownable {
 
 
     // add avatar address
+    // get address avatar id
+    // for each address, add it to addressesToMID
+    // emit event
+    // return bool
     function addAvatarAddress(address[] memory addresses) public isMember returns(bool) {
+        // get address avatar id
+        uint256 avatarID = addressesToMID[msg.sender];
+
+        // for each address, add it to addressesToMID
+        for( uint32 counter = 0; counter < addresses.length; counter++ ) {
+            addressesToMID[addresses[counter]] = avatarID;
+        }
+
+        // emit event
+        emit AvatarAddressAdded( avatarID, addresses );
+
+        return true;
     }
 
 
