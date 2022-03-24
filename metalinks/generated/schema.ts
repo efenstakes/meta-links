@@ -131,6 +131,7 @@ export class MetaLink extends Entity {
     this.set("universe", Value.fromString(""));
     this.set("avatarURI", Value.fromString(""));
     this.set("link", Value.fromString(""));
+    this.set("active", Value.fromBoolean(false));
     this.set("avatar", Value.fromString(""));
   }
 
@@ -211,6 +212,15 @@ export class MetaLink extends Entity {
 
   set link(value: string) {
     this.set("link", Value.fromString(value));
+  }
+
+  get active(): boolean {
+    let value = this.get("active");
+    return value!.toBoolean();
+  }
+
+  set active(value: boolean) {
+    this.set("active", Value.fromBoolean(value));
   }
 
   get avatar(): string {
