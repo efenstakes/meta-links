@@ -1,0 +1,30 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: MetaLinks
+    network: rinkeby
+    source:
+      address: "0xd3F4c9262a08DC4f582418b3cdd12A10063E88D6"
+      abi: MetaLinks
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Avatar
+        - MetaLink
+      abis:
+        - name: MetaLinks
+          file: ./abis/MetaLinks.json
+      eventHandlers:
+        - event: AvatarAddressAdded(indexed uint256,indexed address[])
+          handler: handleAvatarAddressAdded
+        - event: AvatarCreated(indexed uint256,indexed string,indexed string,string,string)
+          handler: handleAvatarCreated
+        - event: MetaLinkAdded(indexed uint256,indexed string,indexed string,string,string,string,bool)
+          handler: handleMetaLinkAdded
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+      file: ./src/mapping.ts
