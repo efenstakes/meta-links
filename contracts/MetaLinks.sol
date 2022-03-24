@@ -74,6 +74,28 @@ contract MetaLinks is Ownable {
 
 
 
+    // constructor
+    constructor() {
+
+    }
+
+
+    // modifiers
+
+    // ensure address has an avatar
+    modifier isMember() {
+        require( addressesToMID[msg.sender] > 0, "You have to be a member" );
+        _;
+    }
+
+    // ensure address has no avatar
+    modifier isNotMember() {
+        require( addressesToMID[msg.sender] == 0, "You are already a member" );
+        _;
+    }
+
+
+
 
 
 
