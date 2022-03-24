@@ -13,9 +13,31 @@ import { Avatar, MetaLink } from "../generated/schema"
 
 // create the avatar
 export function handleAvatarAddressAdded(event: AvatarAddressAddedEvent): void {
+
 }
 
 export function handleAvatarCreated(event: AvatarCreatedEvent): void {
+  // Entities can be loaded from the store using a string ID; this ID
+  // needs to be unique across all entities of the same type
+  let avatar = Avatar.load(event.params.avatarID.toString())
+
+  // Entities only exist after they have been saved to the store;
+  // `null` checks allow to create entities on demand
+  if ( !avatar ) {
+    avatar = new Avatar(event.params.avatarID.toString())
+  }
+
+  // Entity fields can be set based on event parameters
+  avatar.assignedID = event.params.avatarID
+  avatar.name = event.params.name.toString()
+  avatar.aka = event.params.aka.toString()
+  avatar.bio = event.params.bio.toString()
+  avatar.avatarURI = event.params.avatar.toString()
+  avatar.addresses = [ event.transaction.from.toString() ]
+  
+
+  // Entities can be written to the store with `.save()`
+  avatar.save()
 }
 
 export function handleMetaLinkAdded(event: MetaLinkAddedEvent): void {}
