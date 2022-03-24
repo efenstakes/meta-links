@@ -218,7 +218,7 @@ contract MetaLinks is Ownable {
 
     
     // get an avatar given its id
-    function getAvatar(uint256 id) public view returns(string memory, string memory, string memory, string memory, uint[] links) {
+    function getAvatar(uint256 id) public view returns(string memory, string memory, string memory, string memory, uint[] memory links) {
         Avatar memory avatar = midsToAvatars[id];
 
         return ( avatar.name, avatar.aka, avatar.bio, avatar.avatar, avatar.links );
