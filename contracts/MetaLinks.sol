@@ -22,6 +22,29 @@ contract MetaLinks is Ownable {
     mapping( uint256 => MetaLink ) public midsToMetaLinks;
 
 
+    // structs
+    
+    // main avatar
+    struct Avatar {
+        string name;
+        string aka;
+        string bio;
+        string avatar;
+        uint256[] links;
+    }
+
+    // meta link struct
+    struct MetaLink {
+        string name;
+        string aka;
+        string universe;
+        string link;
+        string avatar;
+        bool active;
+    }
+
+    
+
 
 
 
