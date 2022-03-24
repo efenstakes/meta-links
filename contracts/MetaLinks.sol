@@ -51,6 +51,7 @@ contract MetaLinks is Ownable {
 
     // when avatar is created
     event AvatarCreated(
+        uint256 indexed avatarID,
         string indexed name,
         string indexed aka,
         string bio,
@@ -129,7 +130,7 @@ contract MetaLinks is Ownable {
         totalAvatars++;
 
         // emit event
-        emit AvatarCreated( name, aka, bio, avatar );
+        emit AvatarCreated( id, name, aka, bio, avatar );
 
         return id;
     }
