@@ -11,26 +11,6 @@ import { Avatar, MetaLink } from "../generated/schema"
 
 
 
-// create the avatar
-export function handleAvatarAddressAdded(event: AvatarAddressAddedEvent): void {
-  // Entities can be loaded from the store using a string ID; this ID
-  // needs to be unique across all entities of the same type
-  let avatar = Avatar.load(event.params.id.toString())
-
-  // Entities only exist after they have been saved to the store;
-  // `null` checks allow to create entities on demand
-  if ( !avatar ) return
-
-  for (let index = 0; index < event.params.newAddresses.length; index++) {
-    const nowAddress = event.params.newAddresses[index];
-    
-    avatar.links.push( nowAddress.toString() )    
-  }
-
-  // update avatar in the store with `.save()`
-  avatar.save()
-}
-
 export function handleAvatarCreated(event: AvatarCreatedEvent): void {
   // Entities can be loaded from the store using a string ID; this ID
   // needs to be unique across all entities of the same type
@@ -55,7 +35,50 @@ export function handleAvatarCreated(event: AvatarCreatedEvent): void {
   avatar.save()
 }
 
-export function handleMetaLinkAdded(event: MetaLinkAddedEvent): void {}
+
+// create the avatar
+export function handleAvatarAddressAdded(event: AvatarAddressAddedEvent): void {
+  // Entities can be loaded from the store using a string ID; this ID
+  // needs to be unique across all entities of the same type
+  let avatar = Avatar.load(event.params.id.toString())
+
+  // Entities only exist after they have been saved to the store;
+  // `null` checks allow to create entities on demand
+  if ( !avatar ) return
+
+  for (let index = 0; index < event.params.newAddresses.length; index++) {
+    const nowAddress = event.params.newAddresses[index];
+    
+    avatar.links.push( nowAddress.toString() )    
+  }
+
+  // update avatar in the store with `.save()`
+  avatar.save()
+}
+
+
+export function handleMetaLinkAdded(event: MetaLinkAddedEvent): void {
+  let avatar = Avatar.load(event.params.avatarID.toString())
+
+  if( !avatar ) return
+
+  // load metalink
+  let metaLink = MetaLink.load(event.params.newMetaLinkID.toString())
+
+  if( metaLink ) return
+  
+  metaLink.avatarID = event.params.avatarID.toString()
+  metaLink.name = event.params.name.toString()
+  metaLink.aka = event.params.aka.toString()
+  metaLink.universe = event.params.universe.toString()
+  metaLink.link = event.params.link.toString()
+  metaLink.avatar = event.params.avatar.toString()
+  metaLink.active = event.params.active
+  
+
+  // save metaLink
+  metaLink.save()
+}
 
 export function handleOwnershipTransferred(event: OwnershipTransferredEvent): void {}
 
