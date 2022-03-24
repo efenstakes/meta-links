@@ -105,6 +105,31 @@ contract MetaLinks is Ownable {
     // emit event
     // return bool
     function createAvatar( string memory name, string memory aka, string memory bio, string memory avatar ) external isNotMember returns (uint256) {
+        // generate new avatar id
+        uint256 id = totalAvatars + 1;
+
+        // associate address with generated avatar id
+        addressesToMID[msg.sender] = id;
+
+        // create avatar
+        Avatar memory newAvatar = Avatar({
+            name: name,
+            aka: aka,
+            bio: bio,
+            avatar: avatar,
+            links: new uint256[](0)
+        });
+        
+        // add avatar to midsToAvatars
+        midsToAvatars[id] = newAvatar;
+
+        // increase number of avatars by 1
+        totalAvatars++;
+
+        // emit event
+        emit AvatarCreated( name, aka, bio, avatar );
+
+        return id;
     }
 
 
