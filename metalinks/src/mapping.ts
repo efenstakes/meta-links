@@ -66,13 +66,17 @@ export function handleMetaLinkAdded(event: MetaLinkAddedEvent): void {
   let metaLink = MetaLink.load(event.params.newMetaLinkID.toString())
 
   if( metaLink ) return
+
+  // create metalink entity
+  metaLink = new MetaLink(event.params.newMetaLinkID.toString())
   
-  metaLink.avatarID = event.params.avatarID.toString()
+  // set properties
+  metaLink.avatarID = event.params.avatarID
   metaLink.name = event.params.name.toString()
   metaLink.aka = event.params.aka.toString()
   metaLink.universe = event.params.universe.toString()
   metaLink.link = event.params.link.toString()
-  metaLink.avatar = event.params.avatar.toString()
+  metaLink.avatar = event.params.avatarID.toString()
   metaLink.active = event.params.active
   
 
