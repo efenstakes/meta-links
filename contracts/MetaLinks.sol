@@ -60,8 +60,8 @@ contract MetaLinks is Ownable {
     
     // when an avatar adds an address to their avatar
     event AvatarAddressAdded(
-        uint256 id,
-        address[] newAddresses
+        uint256 indexed id,
+        address[] indexed newAddresses
     );
 
     // when link is added
