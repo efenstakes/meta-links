@@ -6,7 +6,7 @@ dataSources:
     name: MetaLinks
     network: rinkeby
     source:
-      address: "0xd3F4c9262a08DC4f582418b3cdd12A10063E88D6"
+      address: "0xCD9f30aD018944233eaBf03576C8d55BC20AEc22"
       abi: MetaLinks
     mapping:
       kind: ethereum/events
@@ -23,8 +23,8 @@ dataSources:
           handler: handleAvatarAddressAdded
         - event: AvatarCreated(indexed uint256,indexed string,indexed string,string,string)
           handler: handleAvatarCreated
-        - event: MetaLinkAdded(indexed uint256,indexed string,indexed
-            string,string,string,string,bool)
+        - event: MetaLinkAdded(indexed uint256,indexed uint256,indexed
+            string,string,string,string,string,bool)
           handler: handleMetaLinkAdded
         - event: OwnershipTransferred(indexed address,indexed address)
           handler: handleOwnershipTransferred
