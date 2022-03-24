@@ -66,9 +66,10 @@ contract MetaLinks is Ownable {
 
     // when link is added
     event MetaLinkAdded(
-        uint indexed id,
+        uint256 indexed avatarID,
+        uint256 indexed newMetaLinkID,
         string indexed name,
-        string indexed aka,
+        string aka,
         string universe,
         string link,
         string avatar,
@@ -192,6 +193,7 @@ contract MetaLinks is Ownable {
 
         // emit event
         emit MetaLinkAdded(
+            newMetaLinkID,
             addressesToMID[msg.sender],
             name,
             aka,
