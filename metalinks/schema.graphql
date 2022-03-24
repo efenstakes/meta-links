@@ -1,0 +1,26 @@
+type Avatar @entity {
+  id: ID!
+
+  assignedID: BigInt!
+  name: String!
+  aka: String!
+  bio: String
+  avatarURI: String!
+
+  addresses: [String!]!
+
+  links: [MetaLink!]! @derivedFrom(field: "avatar")
+}
+
+
+type MetaLink @entity {
+  id: ID!
+  avatarID: BigInt!
+  name: String!
+  aka: String!
+  universe: String!
+  avatarURI: String!
+  link: String!
+
+  avatar: Avatar!
+}
