@@ -1,7 +1,9 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.11;
+pragma solidity 0.8.7;
 
-import "@openzeppelin/contracts@4.4.2/access/Ownable.sol";
+
+
+import "@openzeppelin/contracts/access/Ownable.sol";
 
 
 contract MetaLinks is Ownable {
@@ -216,12 +218,11 @@ contract MetaLinks is Ownable {
 
     
     // get an avatar given its id
-    function getAvatar(uint256 id) public view returns(string memory, string memory, string memory, string memory) {
+    function getAvatar(uint256 id) public view returns(string memory, string memory, string memory, string memory, uint[] links) {
         Avatar memory avatar = midsToAvatars[id];
 
-        return ( avatar.name, avatar.aka, avatar.bio, avatar.avatar );
+        return ( avatar.name, avatar.aka, avatar.bio, avatar.avatar, avatar.links );
     }
-
 
 
 
