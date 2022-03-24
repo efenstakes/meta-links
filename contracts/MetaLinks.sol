@@ -128,16 +128,21 @@ contract MetaLinks is Ownable {
 
     // get my id given address
     function getMyAvatarID() public view returns(uint256) {
+        return addressesToMID[msg.sender];
     }
 
 
     // get id given address
     function getAvatarID(address addrss) public view returns(uint256) {
+        return addressesToMID[addrss];
     }
 
     
     // get an avatar given its id
     function getAvatar(uint256 id) public view returns(string memory, string memory, string memory, string memory) {
+        Avatar memory avatar = midsToAvatars[id];
+
+        return ( avatar.name, avatar.aka, avatar.bio, avatar.avatar );
     }
 
 
