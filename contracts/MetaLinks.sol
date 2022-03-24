@@ -96,6 +96,51 @@ contract MetaLinks is Ownable {
 
 
 
+    // create an avatar
+    // generate new avatar id
+    // associate address with generated avatar id
+    // create avatar
+    // add avatar to midsToAvatars
+    // increase number of avatars by 1
+    // emit event
+    // return bool
+    function createAvatar( string memory name, string memory aka, string memory bio, string memory avatar ) external isNotMember returns (uint256) {
+    }
+
+
+    // add avatar address
+    function addAvatarAddress(address[] memory addresses) public isMember returns(bool) {
+    }
+
+
+    // add a link
+    // create link
+    // generate a link id from totalMetaLinks
+    // use the id to save link to midToMetaLinks mapping
+    // add link to users avatar links array
+    // increase total metalinks with 1
+    // emit event
+    // return bool
+    function addMetaLinkMetalink( string memory name, string memory aka, string memory universe, string memory avatar, string memory link, bool active ) external isMember returns (bool) {
+    }
+
+
+
+    // get my id given address
+    function getMyAvatarID() public view returns(uint256) {
+    }
+
+
+    // get id given address
+    function getAvatarID(address addrss) public view returns(uint256) {
+    }
+
+    
+    // get an avatar given its id
+    function getAvatar(uint256 id) public view returns(string memory, string memory, string memory, string memory) {
+    }
+
+
 
 
 
