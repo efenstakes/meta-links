@@ -45,6 +45,35 @@ contract MetaLinks is Ownable {
 
     
 
+    // events
+
+    // when avatar is created
+    event AvatarCreated(
+        string indexed name,
+        string indexed aka,
+        string bio,
+        string avatar
+    );
+    
+    // when an avatar adds an address to their avatar
+    event AvatarAddressAdded(
+        uint256 id,
+        address[] newAddresses
+    );
+
+    // when link is added
+    event MetaLinkAdded(
+        uint indexed id,
+        string indexed name,
+        string indexed aka,
+        string universe,
+        string link,
+        string avatar,
+        bool active
+    );
+
+
+
 
 
 
