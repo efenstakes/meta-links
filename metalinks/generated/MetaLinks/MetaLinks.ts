@@ -64,6 +64,10 @@ export class AvatarCreated__Params {
   get avatar(): string {
     return this._event.parameters[4].value.toString();
   }
+
+  get bgAvatar(): string {
+    return this._event.parameters[5].value.toString();
+  }
 }
 
 export class MetaLinkAdded extends ethereum.Event {
@@ -95,20 +99,28 @@ export class MetaLinkAdded__Params {
     return this._event.parameters[3].value.toString();
   }
 
-  get universe(): string {
+  get bio(): string {
     return this._event.parameters[4].value.toString();
   }
 
-  get link(): string {
+  get universe(): string {
     return this._event.parameters[5].value.toString();
   }
 
-  get avatar(): string {
+  get link(): string {
     return this._event.parameters[6].value.toString();
   }
 
+  get avatar(): string {
+    return this._event.parameters[7].value.toString();
+  }
+
+  get bgAvatar(): string {
+    return this._event.parameters[8].value.toString();
+  }
+
   get active(): boolean {
-    return this._event.parameters[7].value.toBoolean();
+    return this._event.parameters[9].value.toBoolean();
   }
 }
 
@@ -171,12 +183,20 @@ export class MetaLinks__midsToAvatarsResult {
   value1: string;
   value2: string;
   value3: string;
+  value4: string;
 
-  constructor(value0: string, value1: string, value2: string, value3: string) {
+  constructor(
+    value0: string,
+    value1: string,
+    value2: string,
+    value3: string,
+    value4: string
+  ) {
     this.value0 = value0;
     this.value1 = value1;
     this.value2 = value2;
     this.value3 = value3;
+    this.value4 = value4;
   }
 
   toMap(): TypedMap<string, ethereum.Value> {
@@ -185,6 +205,7 @@ export class MetaLinks__midsToAvatarsResult {
     map.set("value1", ethereum.Value.fromString(this.value1));
     map.set("value2", ethereum.Value.fromString(this.value2));
     map.set("value3", ethereum.Value.fromString(this.value3));
+    map.set("value4", ethereum.Value.fromString(this.value4));
     return map;
   }
 }
@@ -195,7 +216,9 @@ export class MetaLinks__midsToMetaLinksResult {
   value2: string;
   value3: string;
   value4: string;
-  value5: boolean;
+  value5: string;
+  value6: string;
+  value7: boolean;
 
   constructor(
     value0: string,
@@ -203,7 +226,9 @@ export class MetaLinks__midsToMetaLinksResult {
     value2: string,
     value3: string,
     value4: string,
-    value5: boolean
+    value5: string,
+    value6: string,
+    value7: boolean
   ) {
     this.value0 = value0;
     this.value1 = value1;
@@ -211,6 +236,8 @@ export class MetaLinks__midsToMetaLinksResult {
     this.value3 = value3;
     this.value4 = value4;
     this.value5 = value5;
+    this.value6 = value6;
+    this.value7 = value7;
   }
 
   toMap(): TypedMap<string, ethereum.Value> {
@@ -220,7 +247,9 @@ export class MetaLinks__midsToMetaLinksResult {
     map.set("value2", ethereum.Value.fromString(this.value2));
     map.set("value3", ethereum.Value.fromString(this.value3));
     map.set("value4", ethereum.Value.fromString(this.value4));
-    map.set("value5", ethereum.Value.fromBoolean(this.value5));
+    map.set("value5", ethereum.Value.fromString(this.value5));
+    map.set("value6", ethereum.Value.fromString(this.value6));
+    map.set("value7", ethereum.Value.fromBoolean(this.value7));
     return map;
   }
 }
@@ -256,23 +285,27 @@ export class MetaLinks extends ethereum.SmartContract {
   }
 
   addMetaLinkMetalink(
-    name: string,
-    aka: string,
-    universe: string,
-    avatar: string,
-    link: string,
-    active: boolean
+    _name: string,
+    _aka: string,
+    _universe: string,
+    _avatar: string,
+    _bg_avatar: string,
+    _link: string,
+    _bio: string,
+    _active: boolean
   ): boolean {
     let result = super.call(
       "addMetaLinkMetalink",
-      "addMetaLinkMetalink(string,string,string,string,string,bool):(bool)",
+      "addMetaLinkMetalink(string,string,string,string,string,string,string,bool):(bool)",
       [
-        ethereum.Value.fromString(name),
-        ethereum.Value.fromString(aka),
-        ethereum.Value.fromString(universe),
-        ethereum.Value.fromString(avatar),
-        ethereum.Value.fromString(link),
-        ethereum.Value.fromBoolean(active)
+        ethereum.Value.fromString(_name),
+        ethereum.Value.fromString(_aka),
+        ethereum.Value.fromString(_universe),
+        ethereum.Value.fromString(_avatar),
+        ethereum.Value.fromString(_bg_avatar),
+        ethereum.Value.fromString(_link),
+        ethereum.Value.fromString(_bio),
+        ethereum.Value.fromBoolean(_active)
       ]
     );
 
@@ -280,23 +313,27 @@ export class MetaLinks extends ethereum.SmartContract {
   }
 
   try_addMetaLinkMetalink(
-    name: string,
-    aka: string,
-    universe: string,
-    avatar: string,
-    link: string,
-    active: boolean
+    _name: string,
+    _aka: string,
+    _universe: string,
+    _avatar: string,
+    _bg_avatar: string,
+    _link: string,
+    _bio: string,
+    _active: boolean
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "addMetaLinkMetalink",
-      "addMetaLinkMetalink(string,string,string,string,string,bool):(bool)",
+      "addMetaLinkMetalink(string,string,string,string,string,string,string,bool):(bool)",
       [
-        ethereum.Value.fromString(name),
-        ethereum.Value.fromString(aka),
-        ethereum.Value.fromString(universe),
-        ethereum.Value.fromString(avatar),
-        ethereum.Value.fromString(link),
-        ethereum.Value.fromBoolean(active)
+        ethereum.Value.fromString(_name),
+        ethereum.Value.fromString(_aka),
+        ethereum.Value.fromString(_universe),
+        ethereum.Value.fromString(_avatar),
+        ethereum.Value.fromString(_bg_avatar),
+        ethereum.Value.fromString(_link),
+        ethereum.Value.fromString(_bio),
+        ethereum.Value.fromBoolean(_active)
       ]
     );
     if (result.reverted) {
@@ -329,15 +366,22 @@ export class MetaLinks extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
-  createAvatar(name: string, aka: string, bio: string, avatar: string): BigInt {
+  createAvatar(
+    _name: string,
+    _aka: string,
+    _bio: string,
+    _avatar: string,
+    _bg_avatar: string
+  ): BigInt {
     let result = super.call(
       "createAvatar",
-      "createAvatar(string,string,string,string):(uint256)",
+      "createAvatar(string,string,string,string,string):(uint256)",
       [
-        ethereum.Value.fromString(name),
-        ethereum.Value.fromString(aka),
-        ethereum.Value.fromString(bio),
-        ethereum.Value.fromString(avatar)
+        ethereum.Value.fromString(_name),
+        ethereum.Value.fromString(_aka),
+        ethereum.Value.fromString(_bio),
+        ethereum.Value.fromString(_avatar),
+        ethereum.Value.fromString(_bg_avatar)
       ]
     );
 
@@ -345,19 +389,21 @@ export class MetaLinks extends ethereum.SmartContract {
   }
 
   try_createAvatar(
-    name: string,
-    aka: string,
-    bio: string,
-    avatar: string
+    _name: string,
+    _aka: string,
+    _bio: string,
+    _avatar: string,
+    _bg_avatar: string
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "createAvatar",
-      "createAvatar(string,string,string,string):(uint256)",
+      "createAvatar(string,string,string,string,string):(uint256)",
       [
-        ethereum.Value.fromString(name),
-        ethereum.Value.fromString(aka),
-        ethereum.Value.fromString(bio),
-        ethereum.Value.fromString(avatar)
+        ethereum.Value.fromString(_name),
+        ethereum.Value.fromString(_aka),
+        ethereum.Value.fromString(_bio),
+        ethereum.Value.fromString(_avatar),
+        ethereum.Value.fromString(_bg_avatar)
       ]
     );
     if (result.reverted) {
@@ -447,7 +493,7 @@ export class MetaLinks extends ethereum.SmartContract {
   midsToAvatars(param0: BigInt): MetaLinks__midsToAvatarsResult {
     let result = super.call(
       "midsToAvatars",
-      "midsToAvatars(uint256):(string,string,string,string)",
+      "midsToAvatars(uint256):(string,string,string,string,string)",
       [ethereum.Value.fromUnsignedBigInt(param0)]
     );
 
@@ -455,7 +501,8 @@ export class MetaLinks extends ethereum.SmartContract {
       result[0].toString(),
       result[1].toString(),
       result[2].toString(),
-      result[3].toString()
+      result[3].toString(),
+      result[4].toString()
     );
   }
 
@@ -464,7 +511,7 @@ export class MetaLinks extends ethereum.SmartContract {
   ): ethereum.CallResult<MetaLinks__midsToAvatarsResult> {
     let result = super.tryCall(
       "midsToAvatars",
-      "midsToAvatars(uint256):(string,string,string,string)",
+      "midsToAvatars(uint256):(string,string,string,string,string)",
       [ethereum.Value.fromUnsignedBigInt(param0)]
     );
     if (result.reverted) {
@@ -476,7 +523,8 @@ export class MetaLinks extends ethereum.SmartContract {
         value[0].toString(),
         value[1].toString(),
         value[2].toString(),
-        value[3].toString()
+        value[3].toString(),
+        value[4].toString()
       )
     );
   }
@@ -484,7 +532,7 @@ export class MetaLinks extends ethereum.SmartContract {
   midsToMetaLinks(param0: BigInt): MetaLinks__midsToMetaLinksResult {
     let result = super.call(
       "midsToMetaLinks",
-      "midsToMetaLinks(uint256):(string,string,string,string,string,bool)",
+      "midsToMetaLinks(uint256):(string,string,string,string,string,string,string,bool)",
       [ethereum.Value.fromUnsignedBigInt(param0)]
     );
 
@@ -494,7 +542,9 @@ export class MetaLinks extends ethereum.SmartContract {
       result[2].toString(),
       result[3].toString(),
       result[4].toString(),
-      result[5].toBoolean()
+      result[5].toString(),
+      result[6].toString(),
+      result[7].toBoolean()
     );
   }
 
@@ -503,7 +553,7 @@ export class MetaLinks extends ethereum.SmartContract {
   ): ethereum.CallResult<MetaLinks__midsToMetaLinksResult> {
     let result = super.tryCall(
       "midsToMetaLinks",
-      "midsToMetaLinks(uint256):(string,string,string,string,string,bool)",
+      "midsToMetaLinks(uint256):(string,string,string,string,string,string,string,bool)",
       [ethereum.Value.fromUnsignedBigInt(param0)]
     );
     if (result.reverted) {
@@ -517,7 +567,9 @@ export class MetaLinks extends ethereum.SmartContract {
         value[2].toString(),
         value[3].toString(),
         value[4].toString(),
-        value[5].toBoolean()
+        value[5].toString(),
+        value[6].toString(),
+        value[7].toBoolean()
       )
     );
   }
@@ -649,28 +701,36 @@ export class AddMetaLinkMetalinkCall__Inputs {
     this._call = call;
   }
 
-  get name(): string {
+  get _name(): string {
     return this._call.inputValues[0].value.toString();
   }
 
-  get aka(): string {
+  get _aka(): string {
     return this._call.inputValues[1].value.toString();
   }
 
-  get universe(): string {
+  get _universe(): string {
     return this._call.inputValues[2].value.toString();
   }
 
-  get avatar(): string {
+  get _avatar(): string {
     return this._call.inputValues[3].value.toString();
   }
 
-  get link(): string {
+  get _bg_avatar(): string {
     return this._call.inputValues[4].value.toString();
   }
 
-  get active(): boolean {
-    return this._call.inputValues[5].value.toBoolean();
+  get _link(): string {
+    return this._call.inputValues[5].value.toString();
+  }
+
+  get _bio(): string {
+    return this._call.inputValues[6].value.toString();
+  }
+
+  get _active(): boolean {
+    return this._call.inputValues[7].value.toBoolean();
   }
 }
 
@@ -703,20 +763,24 @@ export class CreateAvatarCall__Inputs {
     this._call = call;
   }
 
-  get name(): string {
+  get _name(): string {
     return this._call.inputValues[0].value.toString();
   }
 
-  get aka(): string {
+  get _aka(): string {
     return this._call.inputValues[1].value.toString();
   }
 
-  get bio(): string {
+  get _bio(): string {
     return this._call.inputValues[2].value.toString();
   }
 
-  get avatar(): string {
+  get _avatar(): string {
     return this._call.inputValues[3].value.toString();
+  }
+
+  get _bg_avatar(): string {
+    return this._call.inputValues[4].value.toString();
   }
 }
 

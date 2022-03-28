@@ -11,6 +11,58 @@ import {
   BigDecimal
 } from "@graphprotocol/graph-ts";
 
+export class Universe extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+
+    this.set("name", Value.fromString(""));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save Universe entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.STRING,
+        `Entities of type Universe must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("Universe", id.toString(), this);
+    }
+  }
+
+  static load(id: string): Universe | null {
+    return changetype<Universe | null>(store.get("Universe", id));
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value!.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get name(): string {
+    let value = this.get("name");
+    return value!.toString();
+  }
+
+  set name(value: string) {
+    this.set("name", Value.fromString(value));
+  }
+
+  get metaLinks(): Array<string> {
+    let value = this.get("metaLinks");
+    return value!.toStringArray();
+  }
+
+  set metaLinks(value: Array<string>) {
+    this.set("metaLinks", Value.fromStringArray(value));
+  }
+}
+
 export class Avatar extends Entity {
   constructor(id: string) {
     super();
@@ -20,6 +72,7 @@ export class Avatar extends Entity {
     this.set("name", Value.fromString(""));
     this.set("aka", Value.fromString(""));
     this.set("avatarURI", Value.fromString(""));
+    this.set("bgAvatarURI", Value.fromString(""));
     this.set("addresses", Value.fromStringArray(new Array(0)));
   }
 
@@ -101,6 +154,15 @@ export class Avatar extends Entity {
     this.set("avatarURI", Value.fromString(value));
   }
 
+  get bgAvatarURI(): string {
+    let value = this.get("bgAvatarURI");
+    return value!.toString();
+  }
+
+  set bgAvatarURI(value: string) {
+    this.set("bgAvatarURI", Value.fromString(value));
+  }
+
   get addresses(): Array<string> {
     let value = this.get("addresses");
     return value!.toStringArray();
@@ -128,11 +190,13 @@ export class MetaLink extends Entity {
     this.set("avatarID", Value.fromBigInt(BigInt.zero()));
     this.set("name", Value.fromString(""));
     this.set("aka", Value.fromString(""));
-    this.set("universe", Value.fromString(""));
+    this.set("bio", Value.fromString(""));
     this.set("avatarURI", Value.fromString(""));
+    this.set("bgAvatarURI", Value.fromString(""));
     this.set("link", Value.fromString(""));
     this.set("active", Value.fromBoolean(false));
     this.set("avatar", Value.fromString(""));
+    this.set("universe", Value.fromString(""));
   }
 
   save(): void {
@@ -187,13 +251,13 @@ export class MetaLink extends Entity {
     this.set("aka", Value.fromString(value));
   }
 
-  get universe(): string {
-    let value = this.get("universe");
+  get bio(): string {
+    let value = this.get("bio");
     return value!.toString();
   }
 
-  set universe(value: string) {
-    this.set("universe", Value.fromString(value));
+  set bio(value: string) {
+    this.set("bio", Value.fromString(value));
   }
 
   get avatarURI(): string {
@@ -203,6 +267,15 @@ export class MetaLink extends Entity {
 
   set avatarURI(value: string) {
     this.set("avatarURI", Value.fromString(value));
+  }
+
+  get bgAvatarURI(): string {
+    let value = this.get("bgAvatarURI");
+    return value!.toString();
+  }
+
+  set bgAvatarURI(value: string) {
+    this.set("bgAvatarURI", Value.fromString(value));
   }
 
   get link(): string {
@@ -230,5 +303,14 @@ export class MetaLink extends Entity {
 
   set avatar(value: string) {
     this.set("avatar", Value.fromString(value));
+  }
+
+  get universe(): string {
+    let value = this.get("universe");
+    return value!.toString();
+  }
+
+  set universe(value: string) {
+    this.set("universe", Value.fromString(value));
   }
 }

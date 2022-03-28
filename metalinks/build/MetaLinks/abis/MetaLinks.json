@@ -55,6 +55,12 @@
         "internalType": "string",
         "name": "avatar",
         "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "bgAvatar",
+        "type": "string"
       }
     ],
     "name": "AvatarCreated",
@@ -90,6 +96,12 @@
       {
         "indexed": false,
         "internalType": "string",
+        "name": "bio",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
         "name": "universe",
         "type": "string"
       },
@@ -103,6 +115,12 @@
         "indexed": false,
         "internalType": "string",
         "name": "avatar",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "bgAvatar",
         "type": "string"
       },
       {
@@ -157,32 +175,42 @@
     "inputs": [
       {
         "internalType": "string",
-        "name": "name",
+        "name": "_name",
         "type": "string"
       },
       {
         "internalType": "string",
-        "name": "aka",
+        "name": "_aka",
         "type": "string"
       },
       {
         "internalType": "string",
-        "name": "universe",
+        "name": "_universe",
         "type": "string"
       },
       {
         "internalType": "string",
-        "name": "avatar",
+        "name": "_avatar",
         "type": "string"
       },
       {
         "internalType": "string",
-        "name": "link",
+        "name": "_bg_avatar",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_link",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_bio",
         "type": "string"
       },
       {
         "internalType": "bool",
-        "name": "active",
+        "name": "_active",
         "type": "bool"
       }
     ],
@@ -220,22 +248,27 @@
     "inputs": [
       {
         "internalType": "string",
-        "name": "name",
+        "name": "_name",
         "type": "string"
       },
       {
         "internalType": "string",
-        "name": "aka",
+        "name": "_aka",
         "type": "string"
       },
       {
         "internalType": "string",
-        "name": "bio",
+        "name": "_bio",
         "type": "string"
       },
       {
         "internalType": "string",
-        "name": "avatar",
+        "name": "_avatar",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_bg_avatar",
         "type": "string"
       }
     ],
@@ -350,6 +383,11 @@
         "internalType": "string",
         "name": "avatar",
         "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "bg_avatar",
+        "type": "string"
       }
     ],
     "stateMutability": "view",
@@ -387,7 +425,17 @@
       },
       {
         "internalType": "string",
+        "name": "bio",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
         "name": "avatar",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "bg_avatar",
         "type": "string"
       },
       {
