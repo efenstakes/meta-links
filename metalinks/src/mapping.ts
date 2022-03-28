@@ -6,7 +6,7 @@ import {
   MetaLinkAdded as MetaLinkAddedEvent,
   OwnershipTransferred as OwnershipTransferredEvent
 } from "../generated/MetaLinks/MetaLinks"
-import { Avatar, MetaLink } from "../generated/schema"
+import { Avatar, MetaLink, Universe } from "../generated/schema"
 
 
 
@@ -28,6 +28,7 @@ export function handleAvatarCreated(event: AvatarCreatedEvent): void {
   avatar.aka = event.params.aka.toString()
   avatar.bio = event.params.bio.toString()
   avatar.avatarURI = event.params.avatar.toString()
+  avatar.bgAvatarURI = event.params.bgAvatar.toString()
   avatar.addresses = [ event.transaction.from.toString() ]
   
 
@@ -67,6 +68,19 @@ export function handleMetaLinkAdded(event: MetaLinkAddedEvent): void {
 
   if( metaLink ) return
 
+
+  // create metalink entity
+  let universe = Universe.load(event.params.universe.toString())
+
+  // set properties
+  if( !metaLink ) {
+    universe = new Universe(event.params.universe.toString())
+    universe.name = event.params.universe.toString()
+
+    // save universe
+    universe.save()
+  }
+
   // create metalink entity
   metaLink = new MetaLink(event.params.newMetaLinkID.toString())
   
@@ -74,10 +88,14 @@ export function handleMetaLinkAdded(event: MetaLinkAddedEvent): void {
   metaLink.avatarID = event.params.avatarID
   metaLink.name = event.params.name.toString()
   metaLink.aka = event.params.aka.toString()
-  metaLink.universe = event.params.universe.toString()
   metaLink.link = event.params.link.toString()
-  metaLink.avatar = event.params.avatarID.toString()
+  metaLink.avatarURI = event.params.avatarID.toString()
+  metaLink.bgAvatarURI = event.params.bgAvatar.toString()
+  metaLink.bio = event.params.bio.toString()
   metaLink.active = event.params.active
+  
+  metaLink.universe = event.params.universe.toString()
+  metaLink.avatar = event.params.avatarID.toString()
   
 
   // save metaLink
