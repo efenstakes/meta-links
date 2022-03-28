@@ -32,6 +32,7 @@ contract MetaLinks is Ownable {
         string aka;
         string bio;
         string avatar;
+        string bg_avatar;
         uint256[] links;
     }
 
@@ -41,7 +42,9 @@ contract MetaLinks is Ownable {
         string aka;
         string universe;
         string link;
+        string bio;
         string avatar;
+        string bg_avatar;
         bool active;
     }
 
@@ -55,7 +58,8 @@ contract MetaLinks is Ownable {
         string indexed name,
         string indexed aka,
         string bio,
-        string avatar
+        string avatar,
+        string bg_avatar
     );
     
     // when an avatar adds an address to their avatar
@@ -73,6 +77,7 @@ contract MetaLinks is Ownable {
         string universe,
         string link,
         string avatar,
+        string bg_avatar,
         bool active
     );
 
@@ -108,7 +113,7 @@ contract MetaLinks is Ownable {
     // increase number of avatars by 1
     // emit event
     // return bool
-    function createAvatar( string memory name, string memory aka, string memory bio, string memory avatar ) external isNotMember returns (uint256) {
+    function createAvatar( string memory _name, string memory _aka, string memory _bio, string memory _avatar, string memory _bg_avatar ) external isNotMember returns (uint256) {
         // generate new avatar id
         uint256 id = totalAvatars + 1;
 
@@ -117,10 +122,11 @@ contract MetaLinks is Ownable {
 
         // create avatar
         Avatar memory newAvatar = Avatar({
-            name: name,
-            aka: aka,
-            bio: bio,
-            avatar: avatar,
+            name: _name,
+            aka: _aka,
+            bio: _bio,
+            avatar: _avatar,
+            bg_avatar: _bg_avatar
             links: new uint256[](0)
         });
         
@@ -131,7 +137,7 @@ contract MetaLinks is Ownable {
         totalAvatars++;
 
         // emit event
-        emit AvatarCreated( id, name, aka, bio, avatar );
+        emit AvatarCreated( id, _name, _aka, _bio, _avatar, _bg_avatar );
 
         return id;
     }
