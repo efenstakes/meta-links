@@ -21,9 +21,9 @@ dataSources:
       eventHandlers:
         - event: AvatarAddressAdded(indexed uint256,indexed address[])
           handler: handleAvatarAddressAdded
-        - event: AvatarCreated(indexed uint256,indexed string,indexed string,string,string)
+        - event: AvatarCreated(indexed uint256,indexed string,indexed string,string,string,string)
           handler: handleAvatarCreated
-        - event: MetaLinkAdded(indexed uint256,indexed uint256,indexed string,string,string,string,string,bool)
+        - event: MetaLinkAdded(indexed uint256,indexed uint256,indexed string,string,string,string,string,string,string,bool)
           handler: handleMetaLinkAdded
         - event: OwnershipTransferred(indexed address,indexed address)
           handler: handleOwnershipTransferred
