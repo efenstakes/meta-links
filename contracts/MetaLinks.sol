@@ -74,6 +74,7 @@ contract MetaLinks is Ownable {
         uint256 indexed newMetaLinkID,
         string indexed name,
         string aka,
+        string bio,
         string universe,
         string link,
         string avatar,
@@ -172,7 +173,7 @@ contract MetaLinks is Ownable {
     // increase total metalinks with 1
     // emit event
     // return bool
-    function addMetaLinkMetalink( string memory name, string memory aka, string memory universe, string memory avatar, string memory link, bool active ) external isMember returns (bool) {
+    function addMetaLinkMetalink( string memory _name, string memory _aka, string memory _universe, string memory _avatar, string memory _bg_avatar, string memory _link,  string memory _bio, bool _active ) external isMember returns (bool) {
         Avatar storage myAvatar = midsToAvatars[addressesToMID[msg.sender]];
 
         // generate a link id from totalMetaLinks
@@ -180,12 +181,14 @@ contract MetaLinks is Ownable {
 
         // create link
         MetaLink memory newLink = MetaLink({
-            name: name,
-            aka: aka,
-            universe: universe,
-            link: link,
-            avatar: avatar,
-            active: active
+            name: _name,
+            aka: _aka,
+            bio: _bio,
+            universe: _universe,
+            link: _link,
+            avatar: _avatar,
+            avatar: _bg_avatar,
+            active: _active
         });
 
         // use the id to save link to midToMetaLinks mapping
@@ -201,12 +204,14 @@ contract MetaLinks is Ownable {
         emit MetaLinkAdded(
             newMetaLinkID,
             addressesToMID[msg.sender],
-            name,
-            aka,
-            universe,
-            link,
-            avatar,
-            active
+            _name,
+            _aka,
+            _bio,
+            _universe,
+            _link,
+            _avatar,
+            _bg_avatar,
+            _active
         );
 
         return true;
