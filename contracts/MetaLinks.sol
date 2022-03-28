@@ -59,7 +59,7 @@ contract MetaLinks is Ownable {
         string indexed aka,
         string bio,
         string avatar,
-        string bg_avatar
+        string bgAvatar
     );
     
     // when an avatar adds an address to their avatar
@@ -78,7 +78,7 @@ contract MetaLinks is Ownable {
         string universe,
         string link,
         string avatar,
-        string bg_avatar,
+        string bgAvatar,
         bool active
     );
 
