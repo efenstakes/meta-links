@@ -127,7 +127,7 @@ contract MetaLinks is Ownable {
             aka: _aka,
             bio: _bio,
             avatar: _avatar,
-            bg_avatar: _bg_avatar
+            bg_avatar: _bg_avatar,
             links: new uint256[](0)
         });
         
@@ -187,7 +187,7 @@ contract MetaLinks is Ownable {
             universe: _universe,
             link: _link,
             avatar: _avatar,
-            avatar: _bg_avatar,
+            bg_avatar: _bg_avatar,
             active: _active
         });
 
@@ -201,6 +201,7 @@ contract MetaLinks is Ownable {
         totalMetaLinks++;
 
         // emit event
+        // resulted to using newLink.**PROPOERTY_NAME** because of a stack too deep error
         emit MetaLinkAdded(
             newMetaLinkID,
             addressesToMID[msg.sender],
@@ -209,9 +210,9 @@ contract MetaLinks is Ownable {
             _bio,
             _universe,
             _link,
-            _avatar,
-            _bg_avatar,
-            _active
+            newLink.avatar,
+            newLink.bg_avatar,
+            newLink.active
         );
 
         return true;
