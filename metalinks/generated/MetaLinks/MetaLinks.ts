@@ -146,25 +146,28 @@ export class OwnershipTransferred__Params {
   }
 }
 
-export class MetaLinks__getAvatarResult {
+export class MetaLinks__getAvatarByAddressResult {
   value0: string;
   value1: string;
   value2: string;
   value3: string;
-  value4: Array<BigInt>;
+  value4: string;
+  value5: Array<BigInt>;
 
   constructor(
     value0: string,
     value1: string,
     value2: string,
     value3: string,
-    value4: Array<BigInt>
+    value4: string,
+    value5: Array<BigInt>
   ) {
     this.value0 = value0;
     this.value1 = value1;
     this.value2 = value2;
     this.value3 = value3;
     this.value4 = value4;
+    this.value5 = value5;
   }
 
   toMap(): TypedMap<string, ethereum.Value> {
@@ -173,7 +176,80 @@ export class MetaLinks__getAvatarResult {
     map.set("value1", ethereum.Value.fromString(this.value1));
     map.set("value2", ethereum.Value.fromString(this.value2));
     map.set("value3", ethereum.Value.fromString(this.value3));
-    map.set("value4", ethereum.Value.fromUnsignedBigIntArray(this.value4));
+    map.set("value4", ethereum.Value.fromString(this.value4));
+    map.set("value5", ethereum.Value.fromUnsignedBigIntArray(this.value5));
+    return map;
+  }
+}
+
+export class MetaLinks__getAvatarByIdResult {
+  value0: string;
+  value1: string;
+  value2: string;
+  value3: string;
+  value4: string;
+  value5: Array<BigInt>;
+
+  constructor(
+    value0: string,
+    value1: string,
+    value2: string,
+    value3: string,
+    value4: string,
+    value5: Array<BigInt>
+  ) {
+    this.value0 = value0;
+    this.value1 = value1;
+    this.value2 = value2;
+    this.value3 = value3;
+    this.value4 = value4;
+    this.value5 = value5;
+  }
+
+  toMap(): TypedMap<string, ethereum.Value> {
+    let map = new TypedMap<string, ethereum.Value>();
+    map.set("value0", ethereum.Value.fromString(this.value0));
+    map.set("value1", ethereum.Value.fromString(this.value1));
+    map.set("value2", ethereum.Value.fromString(this.value2));
+    map.set("value3", ethereum.Value.fromString(this.value3));
+    map.set("value4", ethereum.Value.fromString(this.value4));
+    map.set("value5", ethereum.Value.fromUnsignedBigIntArray(this.value5));
+    return map;
+  }
+}
+
+export class MetaLinks__getMetaLinkResult {
+  value0: string;
+  value1: string;
+  value2: string;
+  value3: string;
+  value4: string;
+  value5: string;
+
+  constructor(
+    value0: string,
+    value1: string,
+    value2: string,
+    value3: string,
+    value4: string,
+    value5: string
+  ) {
+    this.value0 = value0;
+    this.value1 = value1;
+    this.value2 = value2;
+    this.value3 = value3;
+    this.value4 = value4;
+    this.value5 = value5;
+  }
+
+  toMap(): TypedMap<string, ethereum.Value> {
+    let map = new TypedMap<string, ethereum.Value>();
+    map.set("value0", ethereum.Value.fromString(this.value0));
+    map.set("value1", ethereum.Value.fromString(this.value1));
+    map.set("value2", ethereum.Value.fromString(this.value2));
+    map.set("value3", ethereum.Value.fromString(this.value3));
+    map.set("value4", ethereum.Value.fromString(this.value4));
+    map.set("value5", ethereum.Value.fromString(this.value5));
     return map;
   }
 }
@@ -259,23 +335,23 @@ export class MetaLinks extends ethereum.SmartContract {
     return new MetaLinks("MetaLinks", address);
   }
 
-  addAvatarAddress(addresses: Array<Address>): boolean {
+  addAvatarAddress(_addresses: Array<Address>): boolean {
     let result = super.call(
       "addAvatarAddress",
       "addAvatarAddress(address[]):(bool)",
-      [ethereum.Value.fromAddressArray(addresses)]
+      [ethereum.Value.fromAddressArray(_addresses)]
     );
 
     return result[0].toBoolean();
   }
 
   try_addAvatarAddress(
-    addresses: Array<Address>
+    _addresses: Array<Address>
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "addAvatarAddress",
       "addAvatarAddress(address[]):(bool)",
-      [ethereum.Value.fromAddressArray(addresses)]
+      [ethereum.Value.fromAddressArray(_addresses)]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -287,11 +363,11 @@ export class MetaLinks extends ethereum.SmartContract {
   addMetaLinkMetalink(
     _name: string,
     _aka: string,
+    _bio: string,
     _universe: string,
     _avatar: string,
     _bg_avatar: string,
     _link: string,
-    _bio: string,
     _active: boolean
   ): boolean {
     let result = super.call(
@@ -300,11 +376,11 @@ export class MetaLinks extends ethereum.SmartContract {
       [
         ethereum.Value.fromString(_name),
         ethereum.Value.fromString(_aka),
+        ethereum.Value.fromString(_bio),
         ethereum.Value.fromString(_universe),
         ethereum.Value.fromString(_avatar),
         ethereum.Value.fromString(_bg_avatar),
         ethereum.Value.fromString(_link),
-        ethereum.Value.fromString(_bio),
         ethereum.Value.fromBoolean(_active)
       ]
     );
@@ -315,11 +391,11 @@ export class MetaLinks extends ethereum.SmartContract {
   try_addMetaLinkMetalink(
     _name: string,
     _aka: string,
+    _bio: string,
     _universe: string,
     _avatar: string,
     _bg_avatar: string,
     _link: string,
-    _bio: string,
     _active: boolean
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
@@ -328,11 +404,11 @@ export class MetaLinks extends ethereum.SmartContract {
       [
         ethereum.Value.fromString(_name),
         ethereum.Value.fromString(_aka),
+        ethereum.Value.fromString(_bio),
         ethereum.Value.fromString(_universe),
         ethereum.Value.fromString(_avatar),
         ethereum.Value.fromString(_bg_avatar),
         ethereum.Value.fromString(_link),
-        ethereum.Value.fromString(_bio),
         ethereum.Value.fromBoolean(_active)
       ]
     );
@@ -413,62 +489,171 @@ export class MetaLinks extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
-  getAvatar(id: BigInt): MetaLinks__getAvatarResult {
+  getAvatarByAddress(_address: Address): MetaLinks__getAvatarByAddressResult {
     let result = super.call(
-      "getAvatar",
-      "getAvatar(uint256):(string,string,string,string,uint256[])",
-      [ethereum.Value.fromUnsignedBigInt(id)]
+      "getAvatarByAddress",
+      "getAvatarByAddress(address):(string,string,string,string,string,uint256[])",
+      [ethereum.Value.fromAddress(_address)]
     );
 
-    return new MetaLinks__getAvatarResult(
+    return new MetaLinks__getAvatarByAddressResult(
       result[0].toString(),
       result[1].toString(),
       result[2].toString(),
       result[3].toString(),
-      result[4].toBigIntArray()
+      result[4].toString(),
+      result[5].toBigIntArray()
     );
   }
 
-  try_getAvatar(id: BigInt): ethereum.CallResult<MetaLinks__getAvatarResult> {
+  try_getAvatarByAddress(
+    _address: Address
+  ): ethereum.CallResult<MetaLinks__getAvatarByAddressResult> {
     let result = super.tryCall(
-      "getAvatar",
-      "getAvatar(uint256):(string,string,string,string,uint256[])",
-      [ethereum.Value.fromUnsignedBigInt(id)]
+      "getAvatarByAddress",
+      "getAvatarByAddress(address):(string,string,string,string,string,uint256[])",
+      [ethereum.Value.fromAddress(_address)]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new MetaLinks__getAvatarResult(
+      new MetaLinks__getAvatarByAddressResult(
         value[0].toString(),
         value[1].toString(),
         value[2].toString(),
         value[3].toString(),
-        value[4].toBigIntArray()
+        value[4].toString(),
+        value[5].toBigIntArray()
       )
     );
   }
 
-  getAvatarID(addrss: Address): BigInt {
+  getAvatarById(_id: BigInt): MetaLinks__getAvatarByIdResult {
+    let result = super.call(
+      "getAvatarById",
+      "getAvatarById(uint256):(string,string,string,string,string,uint256[])",
+      [ethereum.Value.fromUnsignedBigInt(_id)]
+    );
+
+    return new MetaLinks__getAvatarByIdResult(
+      result[0].toString(),
+      result[1].toString(),
+      result[2].toString(),
+      result[3].toString(),
+      result[4].toString(),
+      result[5].toBigIntArray()
+    );
+  }
+
+  try_getAvatarById(
+    _id: BigInt
+  ): ethereum.CallResult<MetaLinks__getAvatarByIdResult> {
+    let result = super.tryCall(
+      "getAvatarById",
+      "getAvatarById(uint256):(string,string,string,string,string,uint256[])",
+      [ethereum.Value.fromUnsignedBigInt(_id)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(
+      new MetaLinks__getAvatarByIdResult(
+        value[0].toString(),
+        value[1].toString(),
+        value[2].toString(),
+        value[3].toString(),
+        value[4].toString(),
+        value[5].toBigIntArray()
+      )
+    );
+  }
+
+  getAvatarID(_address: Address): BigInt {
     let result = super.call("getAvatarID", "getAvatarID(address):(uint256)", [
-      ethereum.Value.fromAddress(addrss)
+      ethereum.Value.fromAddress(_address)
     ]);
 
     return result[0].toBigInt();
   }
 
-  try_getAvatarID(addrss: Address): ethereum.CallResult<BigInt> {
+  try_getAvatarID(_address: Address): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "getAvatarID",
       "getAvatarID(address):(uint256)",
-      [ethereum.Value.fromAddress(addrss)]
+      [ethereum.Value.fromAddress(_address)]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+
+  getAvatarMetaLinkIDs(_id: BigInt): Array<BigInt> {
+    let result = super.call(
+      "getAvatarMetaLinkIDs",
+      "getAvatarMetaLinkIDs(uint256):(uint256[])",
+      [ethereum.Value.fromUnsignedBigInt(_id)]
+    );
+
+    return result[0].toBigIntArray();
+  }
+
+  try_getAvatarMetaLinkIDs(_id: BigInt): ethereum.CallResult<Array<BigInt>> {
+    let result = super.tryCall(
+      "getAvatarMetaLinkIDs",
+      "getAvatarMetaLinkIDs(uint256):(uint256[])",
+      [ethereum.Value.fromUnsignedBigInt(_id)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigIntArray());
+  }
+
+  getMetaLink(_id: BigInt): MetaLinks__getMetaLinkResult {
+    let result = super.call(
+      "getMetaLink",
+      "getMetaLink(uint256):(string,string,string,string,string,string)",
+      [ethereum.Value.fromUnsignedBigInt(_id)]
+    );
+
+    return new MetaLinks__getMetaLinkResult(
+      result[0].toString(),
+      result[1].toString(),
+      result[2].toString(),
+      result[3].toString(),
+      result[4].toString(),
+      result[5].toString()
+    );
+  }
+
+  try_getMetaLink(
+    _id: BigInt
+  ): ethereum.CallResult<MetaLinks__getMetaLinkResult> {
+    let result = super.tryCall(
+      "getMetaLink",
+      "getMetaLink(uint256):(string,string,string,string,string,string)",
+      [ethereum.Value.fromUnsignedBigInt(_id)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(
+      new MetaLinks__getMetaLinkResult(
+        value[0].toString(),
+        value[1].toString(),
+        value[2].toString(),
+        value[3].toString(),
+        value[4].toString(),
+        value[5].toString()
+      )
+    );
   }
 
   getMyAvatarID(): BigInt {
@@ -589,6 +774,25 @@ export class MetaLinks extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
+  totalAddresses(): BigInt {
+    let result = super.call("totalAddresses", "totalAddresses():(uint256)", []);
+
+    return result[0].toBigInt();
+  }
+
+  try_totalAddresses(): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "totalAddresses",
+      "totalAddresses():(uint256)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+
   totalAvatars(): BigInt {
     let result = super.call("totalAvatars", "totalAvatars():(uint256)", []);
 
@@ -667,7 +871,7 @@ export class AddAvatarAddressCall__Inputs {
     this._call = call;
   }
 
-  get addresses(): Array<Address> {
+  get _addresses(): Array<Address> {
     return this._call.inputValues[0].value.toAddressArray();
   }
 }
@@ -709,23 +913,23 @@ export class AddMetaLinkMetalinkCall__Inputs {
     return this._call.inputValues[1].value.toString();
   }
 
-  get _universe(): string {
+  get _bio(): string {
     return this._call.inputValues[2].value.toString();
   }
 
-  get _avatar(): string {
+  get _universe(): string {
     return this._call.inputValues[3].value.toString();
   }
 
-  get _bg_avatar(): string {
+  get _avatar(): string {
     return this._call.inputValues[4].value.toString();
   }
 
-  get _link(): string {
+  get _bg_avatar(): string {
     return this._call.inputValues[5].value.toString();
   }
 
-  get _bio(): string {
+  get _link(): string {
     return this._call.inputValues[6].value.toString();
   }
 

@@ -6,7 +6,7 @@ dataSources:
     name: MetaLinks
     network: rinkeby
     source:
-      address: "0xCD9f30aD018944233eaBf03576C8d55BC20AEc22"
+      address: "0x894510323238Be16dEbC8C7AF31A101258442671"
       abi: MetaLinks
     mapping:
       kind: ethereum/events
