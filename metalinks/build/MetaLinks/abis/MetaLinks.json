@@ -156,7 +156,7 @@
     "inputs": [
       {
         "internalType": "address[]",
-        "name": "addresses",
+        "name": "_addresses",
         "type": "address[]"
       }
     ],
@@ -185,6 +185,11 @@
       },
       {
         "internalType": "string",
+        "name": "_bio",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
         "name": "_universe",
         "type": "string"
       },
@@ -201,11 +206,6 @@
       {
         "internalType": "string",
         "name": "_link",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "_bio",
         "type": "string"
       },
       {
@@ -286,13 +286,62 @@
   {
     "inputs": [
       {
+        "internalType": "address",
+        "name": "_address",
+        "type": "address"
+      }
+    ],
+    "name": "getAvatarByAddress",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256[]",
+        "name": "links",
+        "type": "uint256[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "uint256",
-        "name": "id",
+        "name": "_id",
         "type": "uint256"
       }
     ],
-    "name": "getAvatar",
+    "name": "getAvatarById",
     "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      },
       {
         "internalType": "string",
         "name": "",
@@ -326,7 +375,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "addrss",
+        "name": "_address",
         "type": "address"
       }
     ],
@@ -336,6 +385,69 @@
         "internalType": "uint256",
         "name": "",
         "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_id",
+        "type": "uint256"
+      }
+    ],
+    "name": "getAvatarMetaLinkIDs",
+    "outputs": [
+      {
+        "internalType": "uint256[]",
+        "name": "links",
+        "type": "uint256[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_id",
+        "type": "uint256"
+      }
+    ],
+    "name": "getMetaLink",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
       }
     ],
     "stateMutability": "view",
@@ -465,6 +577,19 @@
     "name": "renounceOwnership",
     "outputs": [],
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "totalAddresses",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {
