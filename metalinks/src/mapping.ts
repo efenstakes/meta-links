@@ -1,16 +1,20 @@
-import { BigInt,  } from "@graphprotocol/graph-ts"
+import { BigInt, log } from "@graphprotocol/graph-ts"
 import {
   MetaLinks,
-  AvatarAddressAdded as AvatarAddressAddedEvent,
+  AvatarAddressesAdded as AvatarAddressesAddedEvent,
   AvatarCreated as AvatarCreatedEvent,
   MetaLinkAdded as MetaLinkAddedEvent,
   OwnershipTransferred as OwnershipTransferredEvent
 } from "../generated/MetaLinks/MetaLinks"
+
+
 import { Avatar, MetaLink, Universe } from "../generated/schema"
 
 
 
 
+
+// create the avatar
 export function handleAvatarCreated(event: AvatarCreatedEvent): void {
   // Entities can be loaded from the store using a string ID; this ID
   // needs to be unique across all entities of the same type
@@ -22,14 +26,19 @@ export function handleAvatarCreated(event: AvatarCreatedEvent): void {
     avatar = new Avatar(event.params.avatarID.toString())
   }
 
+  log.info('event.params.name {} ', [ event.params.name ])
+  // log.info('event.params.name.toHex() {} ', [ event.params.name.toHex() ])
+  // log.info('event.params.name.toHexString() {} ', [ event.params.name.toHexString() ])
+  // log.info('String.UTF16.decode(event.params.name).toString() {}', [ String.UTF16.decode(event.params.name).toString() ] )
+
   // Entity fields can be set based on event parameters
   avatar.assignedID = event.params.avatarID
-  avatar.name = event.params.name.toString()
-  avatar.aka = event.params.aka.toString()
-  avatar.bio = event.params.bio.toString()
-  avatar.avatarURI = event.params.avatar.toString()
-  avatar.bgAvatarURI = event.params.bgAvatar.toString()
-  avatar.addresses = [ event.transaction.from.toString() ]
+  avatar.name = event.params.name
+  avatar.aka = event.params.aka
+  avatar.bio = event.params.bio
+  avatar.avatarURI = event.params.avatar
+  avatar.bgAvatarURI = event.params.bgAvatar
+  avatar.addresses = [ event.transaction.from ]
   
 
   // Entities can be written to the store with `.save()`
@@ -37,11 +46,12 @@ export function handleAvatarCreated(event: AvatarCreatedEvent): void {
 }
 
 
-// create the avatar
-export function handleAvatarAddressAdded(event: AvatarAddressAddedEvent): void {
+
+// add new avatar addresses
+export function handleAvatarAddressesAdded(event: AvatarAddressesAddedEvent): void {
   // Entities can be loaded from the store using a string ID; this ID
   // needs to be unique across all entities of the same type
-  let avatar = Avatar.load(event.params.id.toString())
+  let avatar = Avatar.load(event.params.avatarID.toString())
 
   // Entities only exist after they have been saved to the store;
   // `null` checks allow to create entities on demand
@@ -70,12 +80,12 @@ export function handleMetaLinkAdded(event: MetaLinkAddedEvent): void {
 
 
   // create metalink entity
-  let universe = Universe.load(event.params.universe.toString())
+  let universe = Universe.load(event.params.universe)
 
   // set properties
   if( !metaLink ) {
-    universe = new Universe(event.params.universe.toString())
-    universe.name = event.params.universe.toString()
+    universe = new Universe(event.params.universe)
+    universe.name = event.params.universe
 
     // save universe
     universe.save()
@@ -86,16 +96,16 @@ export function handleMetaLinkAdded(event: MetaLinkAddedEvent): void {
   
   // set properties
   metaLink.avatarID = event.params.avatarID
-  metaLink.name = event.params.name.toString()
-  metaLink.aka = event.params.aka.toString()
-  metaLink.link = event.params.link.toString()
-  metaLink.avatarURI = event.params.avatarID.toString()
-  metaLink.bgAvatarURI = event.params.bgAvatar.toString()
-  metaLink.bio = event.params.bio.toString()
+  metaLink.name = event.params.name
+  metaLink.aka = event.params.aka
+  metaLink.link = event.params.link
+  metaLink.avatarURI = event.params.avatar
+  metaLink.bgAvatarURI = event.params.bgAvatar
+  metaLink.bio = event.params.bio
   metaLink.active = event.params.active
   
-  metaLink.universe = event.params.universe.toString()
-  metaLink.avatar = event.params.avatarID.toString()
+  metaLink.universe = event.params.universe
+  metaLink.avatar = event.params.avatar
   
 
   // save metaLink
