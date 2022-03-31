@@ -73,8 +73,8 @@ contract MetaLinks is Ownable {
     /// @param bgAvatar the big image avatar link 
     event AvatarCreated(
         uint256 indexed avatarID,
-        string indexed name,
-        string indexed aka,
+        string name,
+        string aka,
         string bio,
         string avatar,
         string bgAvatar
@@ -82,11 +82,11 @@ contract MetaLinks is Ownable {
 
     /// @notice Event emitted when avatar adds an address to their avatar
     /// @dev Event emitted when avatar adds an address to their avatar
-    /// @param id the avatar id 
+    /// @param avatarID the avatar id 
     /// @param newAddresses the added addresses
-    event AvatarAddressAdded(
-        uint256 indexed id,
-        address[] indexed newAddresses
+    event AvatarAddressesAdded(
+        uint256 indexed avatarID,
+        address[] newAddresses
     );
 
 
@@ -102,7 +102,7 @@ contract MetaLinks is Ownable {
     event MetaLinkAdded(
         uint256 indexed avatarID,
         uint256 indexed newMetaLinkID,
-        string indexed name,
+        string name,
         string aka,
         string bio,
         string universe,
@@ -201,7 +201,7 @@ contract MetaLinks is Ownable {
         }
 
         // emit event
-        emit AvatarAddressAdded( avatarID, _addresses );
+        emit AvatarAddressesAdded( avatarID, _addresses );
 
         return true;
     }
