@@ -10,17 +10,17 @@
       {
         "indexed": true,
         "internalType": "uint256",
-        "name": "id",
+        "name": "avatarID",
         "type": "uint256"
       },
       {
-        "indexed": true,
+        "indexed": false,
         "internalType": "address[]",
         "name": "newAddresses",
         "type": "address[]"
       }
     ],
-    "name": "AvatarAddressAdded",
+    "name": "AvatarAddressesAdded",
     "type": "event"
   },
   {
@@ -33,13 +33,13 @@
         "type": "uint256"
       },
       {
-        "indexed": true,
+        "indexed": false,
         "internalType": "string",
         "name": "name",
         "type": "string"
       },
       {
-        "indexed": true,
+        "indexed": false,
         "internalType": "string",
         "name": "aka",
         "type": "string"
@@ -82,7 +82,7 @@
         "type": "uint256"
       },
       {
-        "indexed": true,
+        "indexed": false,
         "internalType": "string",
         "name": "name",
         "type": "string"

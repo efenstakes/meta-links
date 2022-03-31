@@ -6,7 +6,7 @@ dataSources:
     name: MetaLinks
     network: rinkeby
     source:
-      address: "0x894510323238Be16dEbC8C7AF31A101258442671"
+      address: "0xD9CF27cB1801D4009d8A3913AC83Df888a0EA91B"
       abi: MetaLinks
     mapping:
       kind: ethereum/events
@@ -19,12 +19,12 @@ dataSources:
         - name: MetaLinks
           file: MetaLinks\abis\MetaLinks.json
       eventHandlers:
-        - event: AvatarAddressAdded(indexed uint256,indexed address[])
-          handler: handleAvatarAddressAdded
-        - event: AvatarCreated(indexed uint256,indexed string,indexed string,string,string,string)
+        - event: AvatarAddressesAdded(indexed uint256,address[])
+          handler: handleAvatarAddressesAdded
+        - event: AvatarCreated(indexed uint256,string,string,string,string,string)
           handler: handleAvatarCreated
-        - event: MetaLinkAdded(indexed uint256,indexed uint256,indexed
-            string,string,string,string,string,string,string,bool)
+        - event: MetaLinkAdded(indexed uint256,indexed
+            uint256,string,string,string,string,string,string,string,bool)
           handler: handleMetaLinkAdded
         - event: OwnershipTransferred(indexed address,indexed address)
           handler: handleOwnershipTransferred

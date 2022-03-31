@@ -73,7 +73,7 @@ export class Avatar extends Entity {
     this.set("aka", Value.fromString(""));
     this.set("avatarURI", Value.fromString(""));
     this.set("bgAvatarURI", Value.fromString(""));
-    this.set("addresses", Value.fromStringArray(new Array(0)));
+    this.set("addresses", Value.fromBytesArray(new Array(0)));
   }
 
   save(): void {
@@ -163,13 +163,13 @@ export class Avatar extends Entity {
     this.set("bgAvatarURI", Value.fromString(value));
   }
 
-  get addresses(): Array<string> {
+  get addresses(): Array<Bytes> {
     let value = this.get("addresses");
-    return value!.toStringArray();
+    return value!.toBytesArray();
   }
 
-  set addresses(value: Array<string>) {
-    this.set("addresses", Value.fromStringArray(value));
+  set addresses(value: Array<Bytes>) {
+    this.set("addresses", Value.fromBytesArray(value));
   }
 
   get links(): Array<string> {

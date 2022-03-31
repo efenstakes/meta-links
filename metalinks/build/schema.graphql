@@ -18,7 +18,7 @@ type Avatar @entity {
   avatarURI: String!
   bgAvatarURI: String!
 
-  addresses: [String!]!
+  addresses: [Bytes!]!
 
   links: [MetaLink!]! @derivedFrom(field: "avatar")
 }

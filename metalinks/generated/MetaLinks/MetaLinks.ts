@@ -10,25 +10,25 @@ import {
   BigInt
 } from "@graphprotocol/graph-ts";
 
-export class AvatarAddressAdded extends ethereum.Event {
-  get params(): AvatarAddressAdded__Params {
-    return new AvatarAddressAdded__Params(this);
+export class AvatarAddressesAdded extends ethereum.Event {
+  get params(): AvatarAddressesAdded__Params {
+    return new AvatarAddressesAdded__Params(this);
   }
 }
 
-export class AvatarAddressAdded__Params {
-  _event: AvatarAddressAdded;
+export class AvatarAddressesAdded__Params {
+  _event: AvatarAddressesAdded;
 
-  constructor(event: AvatarAddressAdded) {
+  constructor(event: AvatarAddressesAdded) {
     this._event = event;
   }
 
-  get id(): BigInt {
+  get avatarID(): BigInt {
     return this._event.parameters[0].value.toBigInt();
   }
 
-  get newAddresses(): Bytes {
-    return this._event.parameters[1].value.toBytes();
+  get newAddresses(): Array<Address> {
+    return this._event.parameters[1].value.toAddressArray();
   }
 }
 
@@ -49,12 +49,12 @@ export class AvatarCreated__Params {
     return this._event.parameters[0].value.toBigInt();
   }
 
-  get name(): Bytes {
-    return this._event.parameters[1].value.toBytes();
+  get name(): string {
+    return this._event.parameters[1].value.toString();
   }
 
-  get aka(): Bytes {
-    return this._event.parameters[2].value.toBytes();
+  get aka(): string {
+    return this._event.parameters[2].value.toString();
   }
 
   get bio(): string {
@@ -91,8 +91,8 @@ export class MetaLinkAdded__Params {
     return this._event.parameters[1].value.toBigInt();
   }
 
-  get name(): Bytes {
-    return this._event.parameters[2].value.toBytes();
+  get name(): string {
+    return this._event.parameters[2].value.toString();
   }
 
   get aka(): string {
