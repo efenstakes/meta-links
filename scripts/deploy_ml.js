@@ -8,6 +8,7 @@ const hre = require("hardhat");
 // 5. 0xCD9f30aD018944233eaBf03576C8d55BC20AEc22
 // 6. 0x4CF5744CDd62bddc322Be3045F7bd337d65fbaDF
 // 7. 0x894510323238Be16dEbC8C7AF31A101258442671
+// 8. 0xD9CF27cB1801D4009d8A3913AC83Df888a0EA91B
 async function main() {
   const MetaLinks = await hre.ethers.getContractFactory("MetaLinks");
   const metaLinks = await MetaLinks.deploy();
