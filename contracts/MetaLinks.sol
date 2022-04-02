@@ -194,8 +194,6 @@ contract MetaLinks is Ownable {
         // ensure id is valid
         require( avatarID > 0 && avatarID <= totalAvatars, "Not a valid Avatar ID" );
 
-        // keep a list of added addresses
-        address[] memory _addedAddresses = new address[](_addresses.length);
 
         // for each address, add it to addressesToMID
         for( uint32 counter = 0; counter < _addresses.length; counter++ ) {
@@ -204,16 +202,13 @@ contract MetaLinks is Ownable {
             // if address is not added, add it
             if( !alreadyExists ) {
                 addressesToMID[_addresses[counter]] = avatarID;
-                _addedAddresses[ _addedAddresses.length ] = _addresses[counter];
                 totalAddresses++;
             }
         }
 
         // emit event
-        if( _addedAddresses.length > 0 ) {
-            emit AvatarAddressesAdded( avatarID, _addedAddresses );
-        }
-
+        emit AvatarAddressesAdded( avatarID, _addresses );
+       
         return true;
     }
 
