@@ -8,6 +8,7 @@ dataSources:
     source:
       address: "0xD9CF27cB1801D4009d8A3913AC83Df888a0EA91B"
       abi: MetaLinks
+      startBlock: 10421100
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5

@@ -57,11 +57,22 @@ export function handleAvatarAddressesAdded(event: AvatarAddressesAddedEvent): vo
   // `null` checks allow to create entities on demand
   if ( !avatar ) return
 
+  log.info("event.params.newAddresses length {}", [event.params.newAddresses.length.toString()])
+
+  // avatar.addresses.concat( event.params.newAddresses as Array<string> )
+
+  let addresses = avatar.addresses;
   for (let index = 0; index < event.params.newAddresses.length; index++) {
     const nowAddress = event.params.newAddresses[index];
     
-    avatar.links.push( nowAddress.toString() )    
+    // log.info("nowAddress toHexString {}", [ nowAddress.toHexString() ])
+    // log.info("nowAddress toString {}", [ nowAddress.toString() ])
+    
+    addresses.push(nowAddress)
   }
+
+  // save new addresses
+  avatar.addresses = addresses
 
   // update avatar in the store with `.save()`
   avatar.save()
@@ -105,7 +116,7 @@ export function handleMetaLinkAdded(event: MetaLinkAddedEvent): void {
   metaLink.active = event.params.active
   
   metaLink.universe = event.params.universe
-  metaLink.avatar = event.params.avatar
+  metaLink.avatar = event.params.avatarID.toString()
   
 
   // save metaLink
