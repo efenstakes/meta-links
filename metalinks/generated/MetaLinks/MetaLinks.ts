@@ -360,7 +360,7 @@ export class MetaLinks extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
-  addMetaLinkMetalink(
+  addAvatarMetalink(
     _name: string,
     _aka: string,
     _bio: string,
@@ -371,8 +371,8 @@ export class MetaLinks extends ethereum.SmartContract {
     _active: boolean
   ): boolean {
     let result = super.call(
-      "addMetaLinkMetalink",
-      "addMetaLinkMetalink(string,string,string,string,string,string,string,bool):(bool)",
+      "addAvatarMetalink",
+      "addAvatarMetalink(string,string,string,string,string,string,string,bool):(bool)",
       [
         ethereum.Value.fromString(_name),
         ethereum.Value.fromString(_aka),
@@ -388,7 +388,7 @@ export class MetaLinks extends ethereum.SmartContract {
     return result[0].toBoolean();
   }
 
-  try_addMetaLinkMetalink(
+  try_addAvatarMetalink(
     _name: string,
     _aka: string,
     _bio: string,
@@ -399,8 +399,8 @@ export class MetaLinks extends ethereum.SmartContract {
     _active: boolean
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
-      "addMetaLinkMetalink",
-      "addMetaLinkMetalink(string,string,string,string,string,string,string,bool):(bool)",
+      "addAvatarMetalink",
+      "addAvatarMetalink(string,string,string,string,string,string,string,bool):(bool)",
       [
         ethereum.Value.fromString(_name),
         ethereum.Value.fromString(_aka),
@@ -675,6 +675,27 @@ export class MetaLinks extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
+  isAddressUsed(_address: Address): boolean {
+    let result = super.call("isAddressUsed", "isAddressUsed(address):(bool)", [
+      ethereum.Value.fromAddress(_address)
+    ]);
+
+    return result[0].toBoolean();
+  }
+
+  try_isAddressUsed(_address: Address): ethereum.CallResult<boolean> {
+    let result = super.tryCall(
+      "isAddressUsed",
+      "isAddressUsed(address):(bool)",
+      [ethereum.Value.fromAddress(_address)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBoolean());
+  }
+
   midsToAvatars(param0: BigInt): MetaLinks__midsToAvatarsResult {
     let result = super.call(
       "midsToAvatars",
@@ -888,20 +909,20 @@ export class AddAvatarAddressCall__Outputs {
   }
 }
 
-export class AddMetaLinkMetalinkCall extends ethereum.Call {
-  get inputs(): AddMetaLinkMetalinkCall__Inputs {
-    return new AddMetaLinkMetalinkCall__Inputs(this);
+export class AddAvatarMetalinkCall extends ethereum.Call {
+  get inputs(): AddAvatarMetalinkCall__Inputs {
+    return new AddAvatarMetalinkCall__Inputs(this);
   }
 
-  get outputs(): AddMetaLinkMetalinkCall__Outputs {
-    return new AddMetaLinkMetalinkCall__Outputs(this);
+  get outputs(): AddAvatarMetalinkCall__Outputs {
+    return new AddAvatarMetalinkCall__Outputs(this);
   }
 }
 
-export class AddMetaLinkMetalinkCall__Inputs {
-  _call: AddMetaLinkMetalinkCall;
+export class AddAvatarMetalinkCall__Inputs {
+  _call: AddAvatarMetalinkCall;
 
-  constructor(call: AddMetaLinkMetalinkCall) {
+  constructor(call: AddAvatarMetalinkCall) {
     this._call = call;
   }
 
@@ -938,10 +959,10 @@ export class AddMetaLinkMetalinkCall__Inputs {
   }
 }
 
-export class AddMetaLinkMetalinkCall__Outputs {
-  _call: AddMetaLinkMetalinkCall;
+export class AddAvatarMetalinkCall__Outputs {
+  _call: AddAvatarMetalinkCall;
 
-  constructor(call: AddMetaLinkMetalinkCall) {
+  constructor(call: AddAvatarMetalinkCall) {
     this._call = call;
   }
 

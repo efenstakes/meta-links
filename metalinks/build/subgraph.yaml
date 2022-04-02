@@ -6,7 +6,7 @@ dataSources:
     name: MetaLinks
     network: rinkeby
     source:
-      address: "0xD9CF27cB1801D4009d8A3913AC83Df888a0EA91B"
+      address: "0xB80008E9f4Fb02cE89E9a758bD0Cd5f6c46c7C3e"
       abi: MetaLinks
       startBlock: 10421100
     mapping:
