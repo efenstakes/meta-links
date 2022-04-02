@@ -1,7 +1,7 @@
 # MetaLinks
 
 This project contains the MetaLink smart contract & the graph api. Contract is deployed at:
-https://rinkeby.etherscan.io/address/0xB80008E9f4Fb02cE89E9a758bD0Cd5f6c46c7C3e
+https://rinkeby.etherscan.io/address/0x693ed407803EFB19cedF600B911C142aBbFF4D9e
 
 The Graph API can be accessed at:
 https://api.thegraph.com/subgraphs/name/efenstakes/metalinks/graphql
